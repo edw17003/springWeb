@@ -1,23 +1,43 @@
 package com.springboot.demo.user;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.Optional;
 import java.util.List;
 
 @Service
 public class UserService {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public List<User> getUsers() {
-        return List.of(
-                new User(
-                        1L,
-                        "Jake",
-                        "jake.edwards@henryscheinone.com",
-                        24,
-                        LocalDate.of(1999, Month.JANUARY, 14)
-                )
-        );
+        return userRepository.findAll();
+    }
+
+    public void addUser(User user) {
+        // Checks if any users already have the given address
+        Optional<User> userByEmail = userRepository.findUserByEmail(user.getEmail());
+        // If so, reject the post request. Otherwise, save the user to the database
+        if(userByEmail.isPresent()) {
+            throw new IllegalStateException("email address is already taken");
+        } else {
+            userRepository.save(user);
+        }
+    }
+
+    public void deleteUser(Long userId) {
+        // Checks if there are any users with the given id
+        boolean userExists = userRepository.existsById(userId);
+        // If there aren't, reject the DELETE request. Otherwise, delete the given user
+        if (!userExists) {
+            throw new IllegalStateException("student does not exist");
+        } else {
+            userRepository.deleteById(userId);
+        }
     }
 }

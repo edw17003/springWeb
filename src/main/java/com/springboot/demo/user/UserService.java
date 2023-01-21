@@ -35,7 +35,7 @@ public class UserService {
         boolean userExists = userRepository.existsById(userId);
         // If there aren't, reject the DELETE request. Otherwise, delete the given user
         if (!userExists) {
-            throw new IllegalStateException("student does not exist");
+            throw new IllegalStateException("user does not exist");
         } else {
             userRepository.deleteById(userId);
         }

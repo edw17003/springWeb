@@ -14,14 +14,12 @@ public class UserConfig { // Loads database with starter users
     CommandLineRunner commandLineRunner(UserRepository userRepository) {
         return args -> {
             User user1 = new User(
-                    "User1",
                     "user1@gmail.com",
-                    LocalDate.of(1985, Month.MARCH, 10)
+                    "password1"
             );
             User user2 = new User(
-                    "User2",
                     "user2@gmail.com",
-                    LocalDate.of(1984, Month.NOVEMBER, 26)
+                    "testPass"
             );
 
             userRepository.saveAll(

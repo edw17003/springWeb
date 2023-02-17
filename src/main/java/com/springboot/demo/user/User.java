@@ -18,47 +18,34 @@ public class User {
             generator="user_sequence"
     )
     private Long id;
-    private String user;
     private String email;
-    private LocalDate dob;
-    @Transient // Specifies that this should not be stored to database, it will only be returned in the GET request
-    private Integer age;
+    private String password;
 
     public User() {
     }
 
     public User(Long id,
-                String user,
                 String email,
-                LocalDate dob) {
+                String password) {
         this.id = id;
-        this.user = user;
         this.email = email;
-        this.dob = dob;
+        this.password = password;
     }
 
-    public User(String user,
-                String email,
-                LocalDate dob) {
-        this.user = user;
+    public User(String email,
+                String password) {
         this.email = email;
-        this.dob = dob;
+        this.password = password;
     }
 
     public Long getId() {
         return id;
     }
-    public String getUser() {
-        return user;
+
+    public String getPassword() {
+        return password;
     }
     public String getEmail() {
         return email;
-    }
-    public Integer getAge() {
-        // calculates age based on date of birth
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
-    public LocalDate getDob() {
-        return dob;
     }
 }

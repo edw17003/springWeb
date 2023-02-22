@@ -1,4 +1,4 @@
-# Java/Spring Web Module
+# CSE 310 Spring Web Server
 
 # Overview
 

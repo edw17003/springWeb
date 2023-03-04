@@ -31,4 +31,9 @@ public class UserController {
         userService.deleteUser(userId);
         return "User " + userId + " deleted";
     }
+
+    @PostMapping("/login")
+    public boolean authenticateUser(@RequestBody User loginRequest) {
+        return userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
+    }
 }

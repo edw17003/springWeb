@@ -10,4 +10,7 @@ public interface UserRepository
 
     // Built in Spring method. Equivalent to "SELECT * FROM user WHERE email = ?"
     Optional<User> findUserByEmail(String email);
+
+//    User findUserByEmail(String email);
+//    User findByUsername(String username);
 }

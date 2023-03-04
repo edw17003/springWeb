@@ -40,4 +40,24 @@ public class UserService {
             userRepository.deleteById(userId);
         }
     }
+
+    public boolean authenticateUser(String email, String password) {
+        Optional<User> userOptional = userRepository.findUserByEmail(email);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+//    public boolean existsById(long id) {
+//        return userRepository.existsById(id);
+//    }
+//
+//    public boolean existsByEmail(String email) {
+//        Optional<User> user = userRepository.findUserByEmail(email);
+//        return user.isPresent();
+//    }
 }

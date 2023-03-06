@@ -1,5 +1,7 @@
-package com.springboot.demo.user;
+package com.springboot.demo.controllers;
 
+import com.springboot.demo.entities.UserEntity;
+import com.springboot.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +18,12 @@ public class UserController {
     }
 
     @GetMapping // Wires as GET request
-    public List<User> getUsers() {
+    public List<UserEntity> getUsers() {
         return userService.getUsers();
     }
 
     @PostMapping // Wires as POST request
-    public String addUser(@RequestBody User user) { // @RequestBody takes the request and maps it to the user
+    public String addUser(@RequestBody UserEntity user) { // @RequestBody takes the request and maps it to the user
         userService.addUser(user);
         return "User added";
     }
@@ -33,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean authenticateUser(@RequestBody User loginRequest) {
+    public boolean authenticateUser(@RequestBody UserEntity loginRequest) {
         return userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
     }
 }

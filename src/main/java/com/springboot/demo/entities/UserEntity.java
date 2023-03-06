@@ -1,12 +1,10 @@
-package com.springboot.demo.user;
+package com.springboot.demo.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.time.Period;
 
 @Entity
 @Table
-public class User {
+public class UserEntity {
     @Id // Boilerplate spring annotations to auto-generate each user ID
     @SequenceGenerator(
             name="user_sequence",
@@ -21,19 +19,19 @@ public class User {
     private String email;
     private String password;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(Long id,
-                String email,
-                String password) {
+    public UserEntity(Long id,
+                      String email,
+                      String password) {
         this.id = id;
         this.email = email;
         this.password = password;
     }
 
-    public User(String email,
-                String password) {
+    public UserEntity(String email,
+                      String password) {
         this.email = email;
         this.password = password;
     }

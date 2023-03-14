@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController // Tells spring that this is a restful controller. Changes how spring wires it.
-@RequestMapping(path = "api/v1/user") // URL that the API is mapped to
+@RequestMapping(path = "api/user") // URL that the API is mapped to
 public class UserController {
     private final UserService userService;
 
